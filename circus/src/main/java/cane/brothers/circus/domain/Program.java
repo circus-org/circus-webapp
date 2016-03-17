@@ -1,8 +1,9 @@
 package cane.brothers.circus.domain;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -34,6 +35,8 @@ public class Program extends BaseEntity {
 	/**
 	 * The troupe of circus performers
 	 */
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="troupe_id", unique = true, nullable = false, updatable = false)
 	private Troupe actorsGroup;
 
 

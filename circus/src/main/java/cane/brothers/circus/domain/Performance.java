@@ -1,5 +1,7 @@
 package cane.brothers.circus.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,6 +22,9 @@ public class Performance extends BaseEntity {
 	@JoinColumn(name="program_id", unique = true, nullable = false)	
 	private Program program; 
 
+	
+	@Column(name = "STATE")
+	@Enumerated
 	private PerformanceState state;
 
 	public Performance() {

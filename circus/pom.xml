@@ -20,8 +20,10 @@
 		
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		
+		<failOnMissingWebXml>false</failOnMissingWebXml>
 
-		<!-- <spring.version>4.2.5.RELEASE</spring.version> -->
+		<!-- <spring.version>4.1.9.RELEASE</spring.version> -->
 		<spring.data.version>1.9.4.RELEASE</spring.data.version>
 		<logback.version>1.1.4</logback.version>
 		
@@ -33,10 +35,12 @@
 		
 		<apache.commons.version>3.0</apache.commons.version>
 		
-
+		<junit.version>4.11</junit.version>
+		<spring.test.version>4.1.9.RELEASE</spring.test.version>
+		
 	</properties>
 	
-<dependencies>
+	<dependencies>
 		
 		<!-- Container: Spring Data -->
 		<dependency>
@@ -50,7 +54,7 @@
 			  </exclusion>
 			</exclusions>
 		</dependency>
-		       
+		
         
         <!-- Logging: logback -->
 		<dependency>
@@ -97,7 +101,22 @@
 			<version>${apache.commons.version}</version>
 		</dependency>
 						
-				
+
+		<!-- Testing: JUnit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- Testing: Spring test -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>${spring.test.version}</version>
+		    <scope>test</scope>
+		</dependency>				
 
 	</dependencies>	
 </project>

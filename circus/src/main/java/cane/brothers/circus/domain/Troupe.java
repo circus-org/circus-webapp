@@ -26,6 +26,11 @@ public class Troupe extends BaseEntity {
 		this.name = name;
 	}
 
+	public Troupe(String name, String head) {
+		this.name = name;
+		this.head = head;
+	}
+
 	public String getName() {
 		return name;
 	}

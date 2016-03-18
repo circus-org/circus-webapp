@@ -30,7 +30,8 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  * @author Juergen Hoeller
  */
 @MappedSuperclass
-public class BaseEntity {
+public abstract class BaseEntity {
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;

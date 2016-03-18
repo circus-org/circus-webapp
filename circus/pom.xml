@@ -17,90 +17,88 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
+
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		
-		<failOnMissingWebXml>false</failOnMissingWebXml>
 
 		<!-- <spring.version>4.1.9.RELEASE</spring.version> -->
 		<spring.data.version>1.9.4.RELEASE</spring.data.version>
 		<logback.version>1.1.4</logback.version>
-		
+
 		<hb.manager.version>5.1.0.Final</hb.manager.version>
 		<dbh2.version>1.4.191</dbh2.version>
-		
+
 		<joda.time.version>2.9.2</joda.time.version>
 		<jadira.version>5.0.0.GA</jadira.version>
-		
+
 		<apache.commons.version>3.0</apache.commons.version>
-		
+
 		<junit.version>4.11</junit.version>
 		<spring.test.version>4.1.9.RELEASE</spring.test.version>
-		
+
 	</properties>
-	
+
 	<dependencies>
-		
+
 		<!-- Container: Spring Data -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
 			<version>${spring.data.version}</version>
 			<exclusions>
-			  <exclusion>
-				<groupId>commons-logging</groupId>
-				<artifactId>commons-logging</artifactId>
-			  </exclusion>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
-		
-        
-        <!-- Logging: logback -->
+
+
+		<!-- Logging: logback -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>${logback.version}</version>
 		</dependency>
-		
-		
+
+
 		<!-- ORM: Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hb.manager.version}</version>
 		</dependency>
-		
-        
-        <!-- DB: H2 -->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>${dbh2.version}</version>
-        </dependency>
-        
-        <!-- Joda Time -->
-        <dependency>
-		  <groupId>joda-time</groupId>
-		  <artifactId>joda-time</artifactId>
-		  <version>${joda.time.version}</version>
+
+
+		<!-- DB: H2 -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>${dbh2.version}</version>
 		</dependency>
-		
+
+		<!-- Joda Time -->
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>${joda.time.version}</version>
+		</dependency>
+
 		<!-- date-time automapping -->
 		<dependency>
-		  <groupId>org.jadira.usertype</groupId>
-		  <artifactId>usertype.core</artifactId>
-		  <version>${jadira.version}</version>
+			<groupId>org.jadira.usertype</groupId>
+			<artifactId>usertype.core</artifactId>
+			<version>${jadira.version}</version>
 		</dependency>
-		
-		
+
+
 		<!-- Apache commons -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>${apache.commons.version}</version>
 		</dependency>
-						
+
 
 		<!-- Testing: JUnit -->
 		<dependency>
@@ -109,14 +107,30 @@
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- Testing: Spring test -->
 		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-test</artifactId>
-		    <version>${spring.test.version}</version>
-		    <scope>test</scope>
-		</dependency>				
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.test.version}</version>
+			<scope>test</scope>
+		</dependency>
 
-	</dependencies>	
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
 </project>

@@ -17,7 +17,7 @@ import org.springframework.core.style.ToStringCreator;
 @Table(name = "PROGRAM")
 public class Program extends BaseEntity {
 	
-	@NotNull(message="Program name may not be null")
+	@NotNull(message="{empty.program.name}")
 	@Column(name = "TITLE", nullable = false)
 	private String title;
 	

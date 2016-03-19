@@ -1,9 +1,12 @@
 package cane.brothers.circus.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -11,9 +14,14 @@ import org.joda.time.DateTime;
 import org.springframework.core.style.ToStringCreator;
 
 @Entity
+@Table(name = "PROGRAM")
 public class Program extends BaseEntity {
 	
+	@NotNull(message="Program name may not be null")
+	@Column(name = "TITLE", nullable = false)
 	private String title;
+	
+	@Column(name = "DESCRIPTION")
 	private String description;
 	
 	// TODO ValueObject for time period
@@ -26,9 +34,11 @@ public class Program extends BaseEntity {
 	// Will be mapped as DATETIME (on MySQL)
 	// For JSON binding use the format: "1970-01-01T00:00:00.000+0000"
 	//@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	@Column(name = "START_DATE")
 	private DateTime startDate;
 	
 	//@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	@Column(name = "END_DATE")
 	private DateTime endDate;
 	
 	
@@ -36,7 +46,7 @@ public class Program extends BaseEntity {
 	 * The troupe of circus performers
 	 */
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="troupe_id", unique = true, nullable = false, updatable = false)
+	@JoinColumn(name="TROUPE_ID", unique = true, nullable = false, updatable = false)
 	private Troupe actorsGroup;
 
 

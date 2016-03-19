@@ -1,10 +1,14 @@
 package cane.brothers.circus;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+
+import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hamcrest.CoreMatchers;
+
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -20,9 +24,19 @@ public class TestTroupeRepository {
 	@Resource
 	private TroupeRepository troupeRepo;
 	
+	private Troupe liones;
+	private Troupe aquacircus;
+	
+	@Before
+	public void createTestTroupes() {
+		liones = troupeRepo.save(new Troupe("Канские Львы", "Михаилков"));
+		aquacircus = troupeRepo.save(new Troupe("Цирк на воде", "Шевченко"));
+	}
+	
 	@Test
-	public void createTroupes() {
-		Troupe liones = troupeRepo.save(new Troupe("Канские Львы", "Михаилков"));
-		assertThat(troupeRepo.findOne(liones.getId()), is(liones));
+	public void testThatTroupesCanBeFound() {
+		List<Troupe> troupes = troupeRepo.findAll();
+		assertThat(troupes, CoreMatchers.notNullValue());
+		assertThat(troupes, CoreMatchers.hasItems(liones, aquacircus));
 	}
 }

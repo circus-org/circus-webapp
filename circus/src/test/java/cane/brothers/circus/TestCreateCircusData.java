@@ -45,7 +45,7 @@ public class TestCreateCircusData {
 	@Before
 	public void createTestData() {
 		// troupes
-		liones = troupeRepo.save(new Troupe("Канские Львы", "Михаилков"));
+		liones = troupeRepo.save(new Troupe("Канские Львы", "Михалков"));
 		aquacircus = troupeRepo.save(new Troupe("Цирк на воде", "Шевченко"));
 		
 		// programs

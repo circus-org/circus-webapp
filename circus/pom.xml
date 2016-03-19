@@ -79,14 +79,7 @@
 			<artifactId>h2</artifactId>
 			<version>${dbh2.version}</version>
 		</dependency>
-		
-		
-		<!-- Validation API -->
-<!-- 		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<version>${javax.validation.version}</version>
-		</dependency> -->
+	
 		
 		<!-- Validation: Hibernate -->
 		<dependency>

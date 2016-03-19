@@ -23,6 +23,7 @@ public class Troupe extends BaseEntity {
 	 */
 	@NotNull(message = "{empty.troupe.name}")
 	@Column(name = "NAME", nullable = false)
+	//, unique = true)
 	private String name;
 
 	/**

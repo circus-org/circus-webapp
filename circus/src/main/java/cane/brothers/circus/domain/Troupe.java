@@ -3,6 +3,7 @@ package cane.brothers.circus.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -10,14 +11,18 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.springframework.core.style.ToStringCreator;
 
 @Entity
-@Table(name = "TROUPES")
+@Table(name = "TROUPES"
+// ,uniqueConstraints = { @UniqueConstraint(name = "UK_NAME", columnNames = "NAME") }
+// org.springframework.dao.DataIntegrityViolationException: could not execute statement;
+// nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
+)
 public class Troupe extends BaseEntity {
 
 	/**
 	 * brand name of the troupe.
 	 */
-	@NotNull(message="{empty.troupe.name}")
-	@Column(name = "NAME", nullable = false, unique = true)
+	@NotNull(message = "{empty.troupe.name}")
+	@Column(name = "NAME", nullable = false)
 	private String name;
 
 	/**

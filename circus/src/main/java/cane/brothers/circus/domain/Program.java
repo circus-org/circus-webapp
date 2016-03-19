@@ -33,11 +33,9 @@ public class Program extends BaseEntity {
 	
 	// Will be mapped as DATETIME (on MySQL)
 	// For JSON binding use the format: "1970-01-01T00:00:00.000+0000"
-	//@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	@Column(name = "START_DATE")
 	private DateTime startDate;
-	
-	//@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+
 	@Column(name = "END_DATE")
 	private DateTime endDate;
 	
@@ -46,7 +44,7 @@ public class Program extends BaseEntity {
 	 * The troupe of circus performers
 	 */
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="TROUPE_ID", unique = true, nullable = false, updatable = false)
+	@JoinColumn(name="TROUPE_ID", nullable = false)
 	private Troupe actorsGroup;
 
 
@@ -54,11 +52,14 @@ public class Program extends BaseEntity {
 	}
 
 
-	public Program(String title, DateTime startDate, DateTime endDate) {
-		super();
-		this.title = title;
-		this.startDate = startDate;
-		this.endDate = endDate;
+	public Program(String title, String description, DateTime startDate, DateTime endDate,
+			Troupe actorsGroup) {
+		this(null, title, description, startDate, endDate, actorsGroup);
+	}
+	
+	public Program(String title, DateTime startDate, DateTime endDate,
+			Troupe actorsGroup) {
+		this(null, title, null, startDate, endDate, actorsGroup);
 	}
 	
 	public Program(Long id, String title, String description, DateTime startDate, DateTime endDate,

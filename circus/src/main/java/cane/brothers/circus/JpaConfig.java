@@ -62,7 +62,7 @@ public class JpaConfig {
 	public JpaVendorAdapter jpaVendorAdapter() {
 		HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
 		jpaVendorAdapter.setDatabase(Database.H2);
-		//jpaVendorAdapter.setGenerateDdl(true);
+		jpaVendorAdapter.setGenerateDdl(true);
 		return jpaVendorAdapter;
 	}
 
@@ -82,7 +82,7 @@ public class JpaConfig {
 		properties.put("hibernate.show_sql", env.getRequiredProperty("hibernate.show_sql"));
 		properties.put("hibernate.hbm2ddl.auto", env.getRequiredProperty("hibernate.hbm2ddl.auto"));
 		
-		//properties.put("javax.persistence.schema-generation.database.action", "drop-and-create");
+		properties.put("javax.persistence.schema-generation.database.action", env.getRequiredProperty("db.action"));
 		properties.put("javax.persistence.schema-generation.scripts.action", env.getRequiredProperty("ddl.action"));
 		properties.put("javax.persistence.schema-generation.scripts.create-target", env.getRequiredProperty("ddl.create-target"));
 		properties.put("javax.persistence.schema-generation.scripts.drop-target", env.getRequiredProperty("ddl.drop-target"));

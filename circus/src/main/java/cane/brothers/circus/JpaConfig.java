@@ -88,6 +88,8 @@ public class JpaConfig {
 		properties.put("javax.persistence.schema-generation.scripts.drop-target", env.getRequiredProperty("ddl.drop-target"));
 		//properties.put("javax.persistence.sql-load-script-source", env.getRequiredProperty("ddl.load-target"));
 		
+		properties.put("jadira.usertype.autoRegisterUserTypes", env.getRequiredProperty("jadira.usertype.autoRegisterUserTypes"));
+		
 		return properties;
 	}
 	

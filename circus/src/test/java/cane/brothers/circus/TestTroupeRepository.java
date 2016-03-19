@@ -3,21 +3,13 @@ package cane.brothers.circus;
 import static org.junit.Assert.assertThat;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.Resource;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -27,11 +19,6 @@ import cane.brothers.circus.repository.TroupeRepository;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = JpaConfig.class)
 public class TestTroupeRepository {
-
-	// @Resource
-	private static Validator validator;
-	
-	private static final Logger log = LoggerFactory.getLogger(TestTroupeRepository.class);
 	
 	@Resource
 	private TroupeRepository troupeRepo;
@@ -39,11 +26,6 @@ public class TestTroupeRepository {
 	private Troupe liones;
 	private Troupe aquacircus;
 
-	@BeforeClass
-	public static void setUp() {
-		ValidatorFactory vf = Validation.buildDefaultValidatorFactory();
-		validator = vf.getValidator();
-	}
 
 	@Before
 	public void createTestTroupes() {
@@ -58,18 +40,4 @@ public class TestTroupeRepository {
 		assertThat(troupes, CoreMatchers.hasItems(liones, aquacircus));
 	}
 
-	@Test
-	public void testThatTroupeWithNullNameInvalid() {
-		Troupe noname = new Troupe(null, "noname");
-		// troupeRepo.save();
-		
-		Set<ConstraintViolation<Troupe>> constraintViolations = ValidateUtils.validate(noname, validator);
-
-		//assertEquals(1, constraintViolations.size());
-		assertThat(constraintViolations.size(), CoreMatchers.is(1));
-
-		// assertThat(constraintViolations, CoreMatchers.notNullValue());
-		// assertThat(constraintViolations.size(), CoreMatchers.is(1));
-		// assertThat(troupes, CoreMatchers.hasItems(liones, aquacircus));
-	}
 }

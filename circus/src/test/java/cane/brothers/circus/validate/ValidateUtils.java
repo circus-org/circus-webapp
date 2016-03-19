@@ -1,4 +1,4 @@
-package cane.brothers.circus;
+package cane.brothers.circus.validate;
 
 import java.util.Set;
 

@@ -16,7 +16,7 @@ public class Troupe extends BaseEntity {
 	/**
 	 * brand name of the troupe.
 	 */
-	@NotNull
+	@NotNull(message="Troupe name may not be null")
 	@Column(name = "NAME")
 	private String name;
 

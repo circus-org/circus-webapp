@@ -1,22 +1,29 @@
 package cane.brothers.circus.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.springframework.core.style.ToStringCreator;
 
 @Entity
+@Table(name = "TROUPES")
 public class Troupe extends BaseEntity {
 
 	/**
 	 * brand name of the troupe.
 	 */
+	@NotNull
+	@Column(name = "NAME")
 	private String name;
 
 	/**
 	 * Head of the troupe - responsible person.
 	 */
+	@Column(name = "HEAD_OF")
 	private String head;
 
 	public Troupe() {
@@ -74,8 +81,6 @@ public class Troupe extends BaseEntity {
 
 	@Override
 	public String toString() {
-		// return String.format("Troupe [id=%s, name=%s, head=%s]", id, name,
-		// head);
 		return new ToStringCreator(this)
 				.append("id", this.getId())
 				.append("name", this.name)

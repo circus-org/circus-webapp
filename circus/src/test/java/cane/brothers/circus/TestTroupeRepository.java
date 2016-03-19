@@ -63,16 +63,10 @@ public class TestTroupeRepository {
 		Troupe noname = new Troupe(null, "noname");
 		// troupeRepo.save();
 		
-		Set<ConstraintViolation<Troupe>> constraintViolations = validator.validate(noname);
+		Set<ConstraintViolation<Troupe>> constraintViolations = ValidateUtils.validate(noname, validator);
 
 		//assertEquals(1, constraintViolations.size());
 		assertThat(constraintViolations.size(), CoreMatchers.is(1));
-		
-		for(ConstraintViolation<Troupe> c : constraintViolations) {
-			//log.error(c.getInvalidValue().toString());
-			log.error(c.getMessage());
-		}
-//		assertEquals("Troupe name may not be null", constraintViolations.iterator().next().getMessage());
 
 		// assertThat(constraintViolations, CoreMatchers.notNullValue());
 		// assertThat(constraintViolations.size(), CoreMatchers.is(1));

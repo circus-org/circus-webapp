@@ -11,19 +11,14 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.springframework.core.style.ToStringCreator;
 
 @Entity
-@Table(name = "TROUPES"
-// ,uniqueConstraints = { @UniqueConstraint(name = "UK_NAME", columnNames = "NAME") }
-// org.springframework.dao.DataIntegrityViolationException: could not execute statement;
-// nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
-)
+@Table(name = "TROUPES")
 public class Troupe extends BaseEntity {
 
 	/**
 	 * brand name of the troupe.
 	 */
 	@NotNull(message = "{empty.troupe.name}")
-	@Column(name = "NAME", nullable = false)
-	//, unique = true)
+	@Column(name = "NAME", nullable = false, unique = true)
 	private String name;
 
 	/**

@@ -43,7 +43,7 @@ public class Program extends BaseEntity {
 	/**
 	 * The troupe of circus performers
 	 */
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER, optional=false)
 	@JoinColumn(name="TROUPE_ID", nullable = false)
 	private Troupe actorsGroup;
 

@@ -40,6 +40,7 @@ public class TestCreateCircusData {
 	private Troupe aquacircus;
 	
 	private Program lionesInArea;
+	private Program waterShow;
 
 
 	@Before
@@ -49,26 +50,43 @@ public class TestCreateCircusData {
 		aquacircus = troupeRepo.save(new Troupe("Цирк на воде", "Шевченко"));
 		
 		// programs
-		DateTime firstJan = new DateTime(2016, 1, 1, 12, 0);
-		DateTime firstApr = firstJan.plus(Period.months(3));
+		DateTime firstDate = new DateTime(2015, 10, 1, 12, 0);
+		DateTime lastDate = firstDate.plus(Period.months(3));
 		DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyyMMdd");
-		log.error(String.format("c %s по %s", firstJan.toString(fmt), firstApr.toString(fmt)));
+		log.error(String.format("c %s по %s", firstDate.toString(fmt), lastDate.toString(fmt)));
 		
-		lionesInArea = programRepo.save( new Program("Львы на арене", firstJan, firstApr, liones));
+		waterShow = programRepo.save( new Program("Цирк на воде в Воронеже", "Незабываемое шоу", firstDate, lastDate, aquacircus));
+		
+		firstDate = new DateTime(2016, 2, 1, 12, 0);
+		lastDate = firstDate.plus(Period.months(3));
+		log.error(String.format("c %s по %s", firstDate.toString(fmt), lastDate.toString(fmt)));
+		
+		lionesInArea = programRepo.save( new Program("Львы на арене", firstDate, lastDate, liones));
 	}
 
 	@Test
-	public void testThatTroupesCanBeFound() {
+	public void testThatEntitiesCanBeFound() {
+		testThatTroupesCanBeFound();
+		testThatProgramsCanBeFound();
+	}
+	
+	private void testThatTroupesCanBeFound() {
 		List<Troupe> troupes = troupeRepo.findAll();
+		log.error(String.format("!!! Есть труппы %s", troupes));
 		assertThat(troupes, CoreMatchers.notNullValue());
 		assertThat(troupes, CoreMatchers.hasItems(liones, aquacircus));
 	}
 	
-	@Test
-	public void testThatProgramsCanBeFound() {
+	private void testThatProgramsCanBeFound() {
 		List<Program> programs = programRepo.findAll();
+		if(programs != null) {
+			for(Program p: programs) {
+				//Hibernate.initialize(p);
+				log.error(String.format("!!! Есть программа: %s", p));
+			}
+		}
 		assertThat(programs, CoreMatchers.notNullValue());
-		assertThat(programs, CoreMatchers.hasItems(lionesInArea));
+		assertThat(programs, CoreMatchers.hasItems(lionesInArea, waterShow));
 	}
 
 }

@@ -24,7 +24,9 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
- * Simple JavaBean domain object with an id property. Used as a base class for objects needing this property.
+ * Simple JavaBean domain object with an id property. 
+ * 
+ * Used as a base class for objects needing this property.
  *
  * @author Ken Krebs
  * @author Juergen Hoeller
@@ -51,7 +53,9 @@ public abstract class BaseEntity {
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(this.id).toHashCode();
+        return new HashCodeBuilder()
+        		.append(this.id)
+        		.toHashCode();
     }
 
     @Override
@@ -63,6 +67,8 @@ public abstract class BaseEntity {
             return false;
         }
         final BaseEntity other = (BaseEntity) obj;
-        return new EqualsBuilder().append(this.id, other.id).isEquals();
+        return new EqualsBuilder()
+        		.append(this.id, other.id)
+        		.isEquals();
     }
 }

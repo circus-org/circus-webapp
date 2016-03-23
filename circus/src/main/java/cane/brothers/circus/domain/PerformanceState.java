@@ -2,6 +2,11 @@ package cane.brothers.circus.domain;
 
 public enum PerformanceState {
 	/** 
+	 * на сеанс пока нельзя купить билеты
+	 */
+	INACTIVE,
+	
+	/** 
 	 * на сеанс можно купить билеты
 	 */
 	ACTIVE, 

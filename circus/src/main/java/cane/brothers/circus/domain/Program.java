@@ -14,7 +14,7 @@ import org.joda.time.DateTime;
 import org.springframework.core.style.ToStringCreator;
 
 @Entity
-@Table(name = "PROGRAM")
+@Table(name = "PROGRAMS")
 public class Program extends BaseEntity {
 	
 	@NotNull(message="{empty.program.name}")
@@ -43,8 +43,8 @@ public class Program extends BaseEntity {
 	/**
 	 * The troupe of circus performers
 	 */
-	@ManyToOne(fetch=FetchType.EAGER, optional=false)
-	@JoinColumn(name="TROUPE_ID", nullable = false)
+	@ManyToOne(fetch=FetchType.LAZY, optional=false)
+	@JoinColumn(name="TROUPE_ID", unique = true, nullable = false)
 	private Troupe actorsGroup;
 
 

@@ -6,12 +6,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity
+// TODO
+//@Entity
 @Table(name = "TICKETS")
 public class Ticket extends BaseEntity {
 
 	/**
-	 * Код сеанса
+	 * Show id
 	 */
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "PERFORMANCE_ID", unique = true, nullable = false)

@@ -1,6 +1,9 @@
 package cane.brothers.circus.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -30,9 +33,23 @@ public class Sector extends BaseEntity {
 	/**
 	 * The layout to which this sector belongs
 	 */
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "LAYOUT_ID", unique = true, nullable = false)
 	private CircusLayout layout;
 
+	/**
+	 * Default constructor
+	 */
 	public Sector() {
+	}
+
+	public Sector(String name, String description, int capacity, Side side, CircusLayout layout) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.capacity = capacity;
+		this.side = side;
+		this.layout = layout;
 	}
 
 	public String getName() {

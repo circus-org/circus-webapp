@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.joda.time.DateTime;
+
 /**
  * Represents a root element in the circus.
  * 
@@ -27,9 +29,22 @@ public class Circus extends BaseEntity {
 	@Column(name = "HEAD_OF")
 	private String head;
 	
+	@Column(name = "FOUNDATION_DATE")
+	private DateTime foundationDate;
+	
+	/**
+	 * Default constructor
+	 */
 	public Circus() {
 	}
 
+	public Circus(String name, String address, String descr) {
+		super();
+		this.name = name;
+		this.address = address;
+		this.descr = descr;
+	}
+	
 	public String getName() {
 		return name;
 	}

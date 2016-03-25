@@ -19,8 +19,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import cane.brothers.circus.domain.Circus;
+import cane.brothers.circus.domain.CircusLayout;
 import cane.brothers.circus.domain.Program;
 import cane.brothers.circus.domain.Troupe;
+import cane.brothers.circus.repository.CircusLayoutRepository;
+import cane.brothers.circus.repository.CircusRepository;
 import cane.brothers.circus.repository.ProgramRepository;
 import cane.brothers.circus.repository.TroupeRepository;
 
@@ -30,12 +34,23 @@ public class TestCreateCircusData {
 	
 	private static final Logger log = LoggerFactory.getLogger(TestCreateCircusData.class);
 	
+	
+	@Resource
+	private CircusRepository circusRepo;
+
+	@Resource
+	private CircusLayoutRepository layoutRepo;
+	
 	@Resource
 	private TroupeRepository troupeRepo;
 	
 	@Resource
 	private ProgramRepository programRepo;
 
+	
+	private Circus circus;
+	private CircusLayout layout;
+	
 	private Troupe liones;
 	private Troupe aquacircus;
 	
@@ -43,8 +58,21 @@ public class TestCreateCircusData {
 	private Program waterShow;
 
 
+
+
 	@Before
 	public void createTestData() {
+		// circus
+		circus = new Circus("Воронежский цирк", 
+				"94006, г. Воронеж, ул. 20-летия октября, 121", 
+				"Воронежский государственный цирк им. А. Л. Дурова");
+		circus = circusRepo.save(circus);
+		
+		// layout
+		layout = new CircusLayout(circus, "Арена Воронежского цирка ", 2400);
+		layout = layoutRepo.save(layout);
+		
+		
 		// troupes
 		liones = troupeRepo.save(new Troupe("Канские Львы", "Михалков"));
 		aquacircus = troupeRepo.save(new Troupe("Цирк на воде", "Шевченко"));
@@ -82,6 +110,8 @@ public class TestCreateCircusData {
 		if(programs != null) {
 			for(Program p: programs) {
 				//Hibernate.initialize(p);
+				// TODO
+				p.getActorsGroup();
 				log.error(String.format("!!! Есть программа: %s", p));
 			}
 		}

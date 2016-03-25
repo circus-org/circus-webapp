@@ -141,7 +141,8 @@ public class Program extends BaseEntity {
             return false;
         }
         final Program other = (Program) obj;
-        return new EqualsBuilder().appendSuper(super.equals(obj))
+        return new EqualsBuilder()
+        		.appendSuper(super.equals(obj))
                 .append(this.title, other.title)
                 .append(this.startDate, other.startDate)
                 .append(this.endDate, other.endDate)

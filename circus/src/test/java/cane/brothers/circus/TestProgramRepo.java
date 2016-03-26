@@ -17,7 +17,7 @@ import cane.brothers.circus.repository.ProgramRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = JpaConfig.class)
-public class TespProgramRepo {
+public class TestProgramRepo {
 
 	@Resource
 	private ProgramRepository programRepo;

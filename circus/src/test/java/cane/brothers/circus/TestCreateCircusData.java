@@ -74,8 +74,11 @@ public class TestCreateCircusData {
 		
 		
 		// troupes
-		liones = troupeRepo.save(new Troupe("Канские Львы", "Михалков"));
-		aquacircus = troupeRepo.save(new Troupe("Цирк на воде", "Шевченко"));
+		liones = new Troupe("Канские Львы", "Михалков");
+		liones = troupeRepo.save(liones);
+		
+		aquacircus = new Troupe("Цирк на воде", "Шевченко");
+		aquacircus = troupeRepo.save(aquacircus);
 		
 		// programs
 		DateTime firstDate = new DateTime(2015, 10, 1, 12, 0);
@@ -83,40 +86,15 @@ public class TestCreateCircusData {
 		DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyyMMdd");
 		log.error(String.format("c %s по %s", firstDate.toString(fmt), lastDate.toString(fmt)));
 		
-		waterShow = programRepo.save( new Program("Цирк на воде в Воронеже", "Незабываемое шоу", firstDate, lastDate, aquacircus));
+		waterShow = new Program("Цирк на воде в Воронеже", "Незабываемое шоу", firstDate, lastDate, aquacircus);
+		waterShow = programRepo.save(waterShow);
 		
 		firstDate = new DateTime(2016, 2, 1, 12, 0);
 		lastDate = firstDate.plus(Period.months(3));
 		log.error(String.format("c %s по %s", firstDate.toString(fmt), lastDate.toString(fmt)));
 		
-		lionesInArea = programRepo.save( new Program("Львы на арене", firstDate, lastDate, liones));
-	}
-
-	@Test
-	public void testThatEntitiesCanBeFound() {
-		testThatTroupesCanBeFound();
-		testThatProgramsCanBeFound();
-	}
-	
-	private void testThatTroupesCanBeFound() {
-		List<Troupe> troupes = troupeRepo.findAll();
-		log.error(String.format("!!! Есть труппы %s", troupes));
-		assertThat(troupes, CoreMatchers.notNullValue());
-		assertThat(troupes, CoreMatchers.hasItems(liones, aquacircus));
-	}
-	
-	private void testThatProgramsCanBeFound() {
-		List<Program> programs = programRepo.findAll();
-		if(programs != null) {
-			for(Program p: programs) {
-				//Hibernate.initialize(p);
-				// TODO
-				p.getActorsGroup();
-				log.error(String.format("!!! Есть программа: %s", p));
-			}
-		}
-		assertThat(programs, CoreMatchers.notNullValue());
-		assertThat(programs, CoreMatchers.hasItems(lionesInArea, waterShow));
+		lionesInArea =  new Program("Львы на арене", firstDate, lastDate, liones);
+		lionesInArea = programRepo.save(lionesInArea);
 	}
 
 }

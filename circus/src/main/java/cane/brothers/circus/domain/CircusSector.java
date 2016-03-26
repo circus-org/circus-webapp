@@ -1,5 +1,6 @@
 package cane.brothers.circus.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -7,12 +8,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "SECTORS")
-public class Sector extends BaseEntity {
+@Table(name = "CIRCUS_SECTORS")
+public class CircusSector extends BaseEntity {
 
 	/**
 	 * The short name of the sector, may be a code such as S1, S2, etc.
 	 */
+	@Column(nullable = false)
 	private String name;
 
 	/**
@@ -27,23 +29,24 @@ public class Sector extends BaseEntity {
 
 	/**
 	 * Left or right side to which this sector belongs
-	 */	
-	private Side side;
+	 */
+	@Column(nullable = false)
+	private CircusSide side;
 
 	/**
 	 * The layout to which this sector belongs
 	 */
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "LAYOUT_ID", unique = true, nullable = false)
+	@JoinColumn(name = "LAYOUT_ID", nullable = false)
 	private CircusLayout layout;
 
 	/**
 	 * Default constructor
 	 */
-	public Sector() {
+	public CircusSector() {
 	}
 
-	public Sector(String name, String description, int capacity, Side side, CircusLayout layout) {
+	public CircusSector(String name, String description, int capacity, CircusSide side, CircusLayout layout) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -64,7 +67,7 @@ public class Sector extends BaseEntity {
 		return capacity;
 	}
 
-	public Side getSide() {
+	public CircusSide getSide() {
 		return side;
 	}
 
@@ -84,7 +87,7 @@ public class Sector extends BaseEntity {
 		this.capacity = capacity;
 	}
 
-	public void setSide(Side side) {
+	public void setSide(CircusSide side) {
 		this.side = side;
 	}
 

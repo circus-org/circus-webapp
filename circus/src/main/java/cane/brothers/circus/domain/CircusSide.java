@@ -1,6 +1,6 @@
 package cane.brothers.circus.domain;
 
-public enum Side {
+public enum CircusSide {
 	/**
 	 * левая сторона
 	 */
